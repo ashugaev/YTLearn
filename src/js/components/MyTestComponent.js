@@ -138,17 +138,21 @@ const hideAll = () => {
   renderCounterApp2()
 }
 
+function deleteItem(item) {
+   console.log(item)
+}
+
 const renderCounterApp2 = () => {
   class Body4 extends Component {
     render() {
       return (
         <div>
-             <button disabled={listOfItems.length === 0} onClick={chooseTask}>Чем заняться?</button>
+             <button disabled={listOfItems.length === 0} onClick={(chooseTask({}))}>Чем заняться?</button>
              {(listOfItems.length > 0) ? 'Список дел:' : 'Отдохнем немножечко'} {(listOfItems.length > 0) && listOfItems.length}
              {visibility && 
               <ol>
                 {
-                  listOfItems.map((item) => <li key={item}>{item}</li>)
+                  listOfItems.map((item) => <li key={item}>{item} <span onClick={deleteItem}>X</span></li>)
                 }
               </ol>
              }
