@@ -1,30 +1,29 @@
-import React, {Component} from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-import './Body.scss'
+import SearchForm from "./SearchForm";
+
+import "./Body.scss";
 
 // var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&maxResults=${result}&q=${searchPhrase}&part=snippet&type=video`
 
 class Body extends Component {
-    constructor() {
-      super()
-      this.API = 'AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA',
-      this.result = 20,
-      this.searchPhrase = '',
-      this.finalURL = `https://www.googleapis.com/youtube/v3/search?`
-    }
-    render() {
-        return ( 
-          <div>
-            <button>Батон</button>
-            Привет
-            {/*// <Youtube />
-            // <Search /> */}
-          </div>
-        )
-    }
+  constructor() {
+    super();
+    (this.API = "AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA"),
+      (this.result = 20),
+      (this.searchPhrase = ""),
+      (this.finalURL = `https://www.googleapis.com/youtube/v3/search?`);
+  }
+  render() {
+    return (
+      <div>
+        <SearchForm />
+        <button>Батон</button>
+      </div>
+    );
+  }
 }
-
 
 // class Search extends Component {
 //  constructor() {
@@ -35,7 +34,6 @@ class Body extends Component {
 
 //    }
 //    this.searchInputChange = this.searchInputChange.bind(this)
-
 
 //   this.clicked = this.clicked.bind(this);
 //  }
@@ -89,7 +87,7 @@ class Body extends Component {
 
 //     constructor(props){
 //       super(props);
-  
+
 //       this.state = {
 //         resultyt: []
 //       };
@@ -108,13 +106,11 @@ class Body extends Component {
 //           console.error(error);
 //         });
 //   }
-  
-  
-  
+
 //     render(){
 //       // console.log(finalURL);
 //       console.log(this.state.resultyt);
-  
+
 //       return(
 //         <div>
 //           <button onClick={this.clicked}>Get youtube videos</button>
@@ -131,6 +127,4 @@ class Body extends Component {
 //     }
 //   }
 
-
-
-ReactDOM.render(<Body />, document.getElementById('root'))
+ReactDOM.render(<Body />, document.getElementById("root"));
