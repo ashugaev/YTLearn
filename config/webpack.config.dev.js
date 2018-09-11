@@ -84,7 +84,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -110,16 +110,14 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              
-            },
-            loader: require.resolve('eslint-loader'),
+        use: [{
+          options: {
+            formatter: eslintFormatter,
+            eslintPath: require.resolve('eslint'),
+
           },
-        ],
+          loader: require.resolve('eslint-loader'),
+        }, ],
         include: paths.appSrc,
       },
       {
@@ -144,12 +142,46 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
+          },
+          {
+            test: /\.scss$/,
+            use: [{
+                loader: require.resolve('style-loader'),
+              },
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                }
+              },
+              {
+                loader: require.resolve('sass-loader'),
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9',
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+            ]
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

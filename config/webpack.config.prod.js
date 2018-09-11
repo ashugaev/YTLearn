@@ -41,10 +41,11 @@ const cssFilename = 'static/css/[name].[contenthash:8].css';
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
 // To have this structure working with relative paths, we have to use custom options.
-const extractTextPluginOptions = shouldUseRelativeAssetPaths
-  ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
-  : {};
+const extractTextPluginOptions = shouldUseRelativeAssetPaths ? // Making sure that the publicPath goes back to to build folder.
+  {
+    publicPath: Array(cssFilename.split('/').length).join('../')
+  } :
+  {};
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -70,8 +71,8 @@ module.exports = {
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path
-        .relative(paths.appSrc, info.absoluteResourcePath)
-        .replace(/\\/g, '/'),
+      .relative(paths.appSrc, info.absoluteResourcePath)
+      .replace(/\\/g, '/'),
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -90,7 +91,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      
+
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -116,16 +117,14 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-              
-            },
-            loader: require.resolve('eslint-loader'),
+        use: [{
+          options: {
+            formatter: eslintFormatter,
+            eslintPath: require.resolve('eslint'),
+
           },
-        ],
+          loader: require.resolve('eslint-loader'),
+        }, ],
         include: paths.appSrc,
       },
       {
@@ -149,9 +148,43 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+
               compact: true,
             },
+          },
+          {
+            test: /\.scss$/,
+            use: [{
+                loader: require.resolve('style-loader'),
+              },
+              {
+                loader: require.resolve('css-loader'),
+                options: {
+                  importLoaders: 1,
+                }
+              },
+              {
+                loader: require.resolve('sass-loader'),
+              },
+              {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    autoprefixer({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9',
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+            ]
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
@@ -168,16 +201,14 @@ module.exports = {
           {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract(
-              Object.assign(
-                {
+              Object.assign({
                   fallback: {
                     loader: require.resolve('style-loader'),
                     options: {
                       hmr: false,
                     },
                   },
-                  use: [
-                    {
+                  use: [{
                       loader: require.resolve('css-loader'),
                       options: {
                         importLoaders: 1,
