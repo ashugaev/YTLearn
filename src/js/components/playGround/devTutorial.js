@@ -36,6 +36,7 @@ class Hello extends Component {
           <textarea onChange={this.textAreaHandler} ></textarea> 
           <div>We have {this.state.characterCount} sumbols there!</div>
           <button onClick={this.toogleToogler}>Toogle</button><span>{this.state.toogler ? 'Я тут!' : 'Меня тут нет!'}</span>
+      
         </div>
         )
     }
