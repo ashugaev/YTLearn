@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import SearchForm from "./SearchForm";
+import SearchForm from "./SearchForm.jsx";
 
 import "./Body.scss";
 
@@ -19,7 +19,6 @@ class Body extends Component {
     return (
       <div>
         <SearchForm />
-        <button>Батон</button>
       </div>
     );
   }

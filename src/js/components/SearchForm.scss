@@ -1,7 +1,13 @@
 .searchForm {
-    font-size: 30px;
+    padding: 10px;
+
     &__input {
         width: 100%;
-        padding: 0 20px;
+        padding: 0 15px;
+        border-radius: 4px;
+        border: solid 1px #e83b3b;
+        font-family: Roboto, sans-serif;
+        outline: none;
+        color: #e83b3b;
     }
 }
