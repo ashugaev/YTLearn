@@ -3,19 +3,15 @@ import React, { Component } from "react";
 import "./SearchForm.scss";
 
 class SearchForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       resultHtml: []
     };
     this.API = "AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA";
     this.result = 20;
     this.baseURL = `https://www.googleapis.com/youtube/v3/search?`;
-
-    // this.generateUrl = this.generateUrl.bind(this);
   }
-
-  // https://www.googleapis.com/youtube/v3/search?key=${API}&maxResults=${result}&q=${searchPhrase}&part=snippet&type=video
 
   // Получение данных из API
   fetchSearchResults = url => {
@@ -32,10 +28,12 @@ class SearchForm extends Component {
   // Генерирует объект с параметрами для вывода
   generateVideoObj = data => {
     console.log(data);
-    const resultHtml = data.items.map(
-      obj => "https://www.youtube.com/embed/" + obj.id.videoId
-    );
+    const resultHtml = data.items;
+    // .map(
+    //   obj => "https://www.youtube.com/embed/" + obj.id.videoId
+    // );
     this.setState({ resultHtml });
+    this.props.changeVideoArray(resultHtml);
   };
 
   // Формирует url для поиска
@@ -66,20 +64,7 @@ class SearchForm extends Component {
           />
         </form>
 
-        {this.state.resultHtml.map((link, i) => {
-          var frame = (
-            <div key={i} className="youtube">
-              <iframe
-                width="560"
-                height="315"
-                src={link}
-                frameBorder="0"
-                allowFullScreen
-              />
-            </div>
-          );
-          return frame;
-        })}
+        {this.state.resultHtml.map((item, i) => {})}
       </div>
     );
   }

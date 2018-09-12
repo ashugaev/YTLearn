@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import SearchForm from "./SearchForm.jsx";
+import VideoInTheList from "./VideoInTheList.jsx";
 
 import "./Body.scss";
 
@@ -10,15 +11,27 @@ import "./Body.scss";
 class Body extends Component {
   constructor() {
     super();
+    this.state = {
+      videoArray: []
+    };
     (this.API = "AIzaSyAOYG1Ai4mZy6L-ifZgQ8bzS87vA6v3JdA"),
       (this.result = 20),
       (this.searchPhrase = ""),
       (this.finalURL = `https://www.googleapis.com/youtube/v3/search?`);
   }
+
+  showVideoPreview = videoArray => {
+    console.log("Привет", videoArray);
+    this.setState({ videoArray });
+  };
+
   render() {
     return (
       <div>
-        <SearchForm />
+        <SearchForm changeVideoArray={this.showVideoPreview} />
+        {this.state.videoArray.map((item, i) => {
+          <VideoInTheList item={item} />;
+        })}
       </div>
     );
   }
