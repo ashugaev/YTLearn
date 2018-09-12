@@ -43,14 +43,14 @@ class SearchForm extends Component {
     let url = `${this.baseURL}key=${this.API}&maxResults=${
       this.result
     }&q=${searchPhrase}&part=snippet&type=video`;
+
     return url;
   }
 
   // Submit поиска
   submitSearch = event => {
     event.preventDefault();
-
-    const value = event.target.value;
+    const value = event.target.elements.searchInput.value;
     const url = this.generateUrl(value);
     this.fetchSearchResults(url);
   };
@@ -62,11 +62,11 @@ class SearchForm extends Component {
           <input
             placeholder="Введите поисковый запрос"
             className="searchForm__input"
+            name="searchInput"
           />
         </form>
 
         {this.state.resultHtml.map((link, i) => {
-          console.log(link);
           var frame = (
             <div key={i} className="youtube">
               <iframe
