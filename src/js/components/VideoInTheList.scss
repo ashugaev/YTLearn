@@ -1,6 +1,14 @@
 .videoInTheList {
     margin: 10px;
     display: flex;
+    text-decoration: none;
+    color: #333;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: #333;
+    }
 
     &__info-box {
         margin-left: 15px;

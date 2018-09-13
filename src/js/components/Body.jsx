@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
+import VideoPage from "./VideoPage.jsx";
 
 import "./Body.scss";
+
+const routes = {};
 
 class Body extends Component {
   constructor() {
@@ -55,7 +59,10 @@ class Body extends Component {
 
   render() {
     return (
+      <Router>
       <div>
+        <Route path="/video/:id" component={VideoPage} />
+        <Link to="/test">About</Link>
         <SearchForm
           changeVideoArray={this.showVideoPreview}
           finalUrlToParent={this.saveFinalUrl}
@@ -70,6 +77,7 @@ class Body extends Component {
           />
         </div>
       </div>
+      </Router>
     );
   }
 }
