@@ -60,23 +60,23 @@ class Body extends Component {
   render() {
     return (
       <Router>
-      <div>
-        <Route path="/video/:id" component={VideoPage} />
-        <Link to="/test">About</Link>
-        <SearchForm
-          changeVideoArray={this.showVideoPreview}
-          finalUrlToParent={this.saveFinalUrl}
-        />
-        {this.state.videoArray.map((item, i) => {
-          return <VideoInTheList key={i} item={item} />;
-        })}
-        <div className="body__nextPageBtn">
-          <NextPageBtn
-            nextPageClick={this.nextPageClick}
-            nextPageToken={this.state.nextPageToken}
+        <div>
+          <Route path="/video/:id" component={VideoPage} />
+          <Link to="/test">About</Link>
+          <SearchForm
+            changeVideoArray={this.showVideoPreview}
+            finalUrlToParent={this.saveFinalUrl}
           />
+          {this.state.videoArray.map((item, i) => {
+            return <VideoInTheList key={i} item={item} />;
+          })}
+          <div className="body__nextPageBtn">
+            <NextPageBtn
+              nextPageClick={this.nextPageClick}
+              nextPageToken={this.state.nextPageToken}
+            />
+          </div>
         </div>
-      </div>
       </Router>
     );
   }
