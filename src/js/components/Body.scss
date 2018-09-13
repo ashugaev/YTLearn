@@ -1,4 +1,7 @@
-* {
-    color: red !important;
-    font-size: 30px;
+.body {
+    &__nextPageBtn {
+        display: flex;
+        justify-content: center;
+        
+    }
 }

@@ -19,6 +19,8 @@ class SearchForm extends Component {
       .then(response => response.json())
       .then(responseJson => {
         this.generateVideoObj(responseJson);
+        // Вернем урл родителю
+        this.props.finalUrlToParent(url);
       })
       .catch(error => {
         console.error(error);
@@ -28,7 +30,7 @@ class SearchForm extends Component {
   // Генерирует объект с параметрами для вывода
   generateVideoObj = data => {
     console.log(data);
-    const resultHtml = data.items;
+    const resultHtml = data;
     // .map(
     //   obj => "https://www.youtube.com/embed/" + obj.id.videoId
     // );
@@ -63,8 +65,6 @@ class SearchForm extends Component {
             name="searchInput"
           />
         </form>
-
-        {this.state.resultHtml.map((item, i) => {})}
       </div>
     );
   }

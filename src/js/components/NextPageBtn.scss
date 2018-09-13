@@ -1,0 +1,24 @@
+.nextPageBtn {
+    border: solid 1px red;
+    font-size: 18px;
+    font-weight: 600;
+    color: red;
+    padding: 10px;
+    display: inline-flex;
+    margin-top: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+
+    &:hover,
+    &:after {
+        color: red;
+        text-decoration: none;
+    }
+
+    &:after {
+        content: '→';
+        display: block;
+        margin-left: 10px;
+    }
+}
