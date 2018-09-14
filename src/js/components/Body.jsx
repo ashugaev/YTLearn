@@ -9,12 +9,11 @@ import VideoPage from "./VideoPage.jsx";
 
 import "./Body.scss";
 
-const routes = {};
-
 class ListOfVideos extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <div>
