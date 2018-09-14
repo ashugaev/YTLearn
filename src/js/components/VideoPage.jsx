@@ -7,7 +7,15 @@ class VideoPage extends Component {
   }
   render() {
     return (
-      <div className="videoPage">ТЕСТ УСПЕШЕН {this.props.match.params.id}</div>
+      <div className="videoPage">
+        <iframe
+          width="560"
+          height="315"
+          src={"https://www.youtube.com/embed/" + this.props.extra[this.props.match.params.id].id.videoId}
+          frameBorder="0"
+          allowFullScreen
+        />
+      </div>
     );
   }
 }

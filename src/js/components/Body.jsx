@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
@@ -10,6 +10,21 @@ import VideoPage from "./VideoPage.jsx";
 import "./Body.scss";
 
 const routes = {};
+
+class ListOfVideos extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        {this.props.extra.map((item, i) => {
+          return <VideoInTheList key={i} dataKey={i} item={item} />;
+        })}
+      </div>
+    );
+  }
+}
 
 class Body extends Component {
   constructor() {
@@ -61,15 +76,26 @@ class Body extends Component {
     return (
       <Router>
         <div>
-          <Route path="/video/:id" component={VideoPage} />
-          <Link to="/test">About</Link>
           <SearchForm
             changeVideoArray={this.showVideoPreview}
             finalUrlToParent={this.saveFinalUrl}
           />
-          {this.state.videoArray.map((item, i) => {
-            return <VideoInTheList key={i} item={item} />;
-          })}
+
+          <Switch>
+            <Route
+              path="/video/:id"
+              render={props => (
+                <VideoPage {...props} extra={this.state.videoArray} />
+              )}
+            />
+            <Route
+              path="/"
+              render={props => (
+                <ListOfVideos {...props} extra={this.state.videoArray} />
+              )}
+            />
+          </Switch>
+
           <div className="body__nextPageBtn">
             <NextPageBtn
               nextPageClick={this.nextPageClick}

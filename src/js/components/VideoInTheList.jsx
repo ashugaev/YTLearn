@@ -8,24 +8,23 @@ class VideoInTheList extends Component {
   }
   render() {
     return (
-      <Router>
-        <Link to={`/video/${this.props.item.id.videoId}`}>
-          <div className="videoInTheList">
-            {}
-            <img src={this.props.item.snippet.thumbnails.medium.url} alt="" />
-            <div className="videoInTheList__info-box">
-              <div className="videoInTheList__title">
-                {this.props.item.snippet.title}
-              </div>
-              <div className="videoInTheList__description">
-                {this.props.item.snippet.description}
-              </div>
+      <Link to={`/video/${this.props.dataKey}`}>
+        <div className="videoInTheList">
+          <img src={this.props.item.snippet.thumbnails.medium.url} alt="" />
+          <div className="videoInTheList__info-box">
+            <div className="videoInTheList__title">
+              {this.props.item.snippet.title}
+            </div>
+            <div className="videoInTheList__description">
+              {this.props.item.snippet.description}
             </div>
           </div>
-        </Link>
-      </Router>
+        </div>
+      </Link>
     );
   }
+
+
 }
 
 export default VideoInTheList;
