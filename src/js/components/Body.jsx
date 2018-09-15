@@ -6,8 +6,16 @@ import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
+import VideosContaiter from "../containers/videosContaner.jsx";
+import VideoDetails from "../containers/videoDetails.jsx";
 
 import "./Body.scss";
+
+import { createStore } from "redux";
+import allRedusers from "../store";
+import { Provider } from "react-redux";
+
+const store = createStore(allRedusers);
 
 class ListOfVideos extends Component {
   constructor(props) {
@@ -74,34 +82,40 @@ class Body extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <SearchForm
-            changeVideoArray={this.showVideoPreview}
-            finalUrlToParent={this.saveFinalUrl}
-          />
+        {/* Провайдер для передачи стора в компоненты */}
+        <Provider store={store}>
+          <div>
+            {console.log("Хранилище", store)}
+            <VideosContaiter />
+            <VideoDetails />
+            <SearchForm
+              changeVideoArray={this.showVideoPreview}
+              finalUrlToParent={this.saveFinalUrl}
+            />
 
-          <Switch>
-            <Route
-              path="/video/:id"
-              render={props => (
-                <VideoPage {...props} extra={this.state.videoArray} />
-              )}
-            />
-            <Route
-              path="/"
-              render={props => (
-                <ListOfVideos {...props} extra={this.state.videoArray} />
-              )}
-            />
-          </Switch>
+            <Switch>
+              <Route
+                path="/video/:id"
+                render={props => (
+                  <VideoPage {...props} extra={this.state.videoArray} />
+                )}
+              />
+              <Route
+                path="/"
+                render={props => (
+                  <ListOfVideos {...props} extra={this.state.videoArray} />
+                )}
+              />
+            </Switch>
 
-          <div className="body__nextPageBtn">
-            <NextPageBtn
-              nextPageClick={this.nextPageClick}
-              nextPageToken={this.state.nextPageToken}
-            />
+            <div className="body__nextPageBtn">
+              <NextPageBtn
+                nextPageClick={this.nextPageClick}
+                nextPageToken={this.state.nextPageToken}
+              />
+            </div>
           </div>
-        </div>
+        </Provider>
       </Router>
     );
   }
