@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { toggleMenu } from "../actions/index";
 
 import "./Header.scss";
 
@@ -8,7 +11,7 @@ class Header extends Component {
     return (
       <div className="yHeader">
         <div
-          onClick={this.onMenuClick(menuState)}
+          onClick={() => this.props.toggleMenu(true)}
           className="yHeader__menuBtn"
         />
       </div>
@@ -16,14 +19,21 @@ class Header extends Component {
   }
 }
 
-const menuState = false;
+// const matchDispatchToProps = dispatch => {
+//   return {
+//     onMenuClick: menuState => {
+//       dispatch(toggleMenu(menuState));
+//     }
+//   };
+// };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onMenuClick: menuState => {
-      dispatch(toggleMenu(menuState));
-    }
-  };
-};
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      toggleMenu: toggleMenu
+    },
+    dispatch
+  );
+}
 
-export default connect(mapDispatchToProps)(Header);
+export default connect(matchDispatchToProps)(Header);

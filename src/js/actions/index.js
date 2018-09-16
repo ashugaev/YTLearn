@@ -6,9 +6,9 @@ export const selectVideo = video => {
   };
 };
 
-export const toggleMenu = (menuState) => {
+export const toggleMenu = state => {
   return {
-    type: 'TOGGLE_MENU',
-    menuActive: menuState
-  }
-}
+    type: "TOGGLE_MENU",
+    menuActive: !state.menuActive
+  };
+};
