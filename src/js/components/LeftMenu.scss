@@ -1,0 +1,22 @@
+@import "../../scss/helpers/variables";
+.leftMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $grayLightOne;
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    &__list {
+        margin: 0;
+        padding: 0;
+    }
+    &__logo {
+        height: 50px;
+        width: 50px;
+        background-size: contain;
+        background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3Mi44MzcgNzMuMDQ0Ij48ZGVmcz48c3R5bGU+LmF7ZmlsbDojZWY1MzUzO308L3N0eWxlPjwvZGVmcz48cGF0aCBjbGFzcz0iYSIgZD0iTTE0Ny41NTUsMTI2OXY1Ny4xOTNIMTg2LjRWMTMxMC40M0gxNjQuMTU0VjEyNjloMzguNTkzdjczLjA0NEgxMjkuOTFWMTI2OVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjkuOTEgLTEyNjkpIi8+PC9zdmc+");
+    }
+}

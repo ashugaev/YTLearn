@@ -8,11 +8,12 @@ import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
 import VideosContaiter from "../containers/videosContaner.jsx";
 import VideoDetails from "../containers/videoDetails.jsx";
+import LeftMenu from "./LeftMenu";
 
 import "./Body.scss";
 
 import { createStore } from "redux";
-import allRedusers from "../store";
+import allRedusers from "../reducers";
 import { Provider } from "react-redux";
 
 const store = createStore(allRedusers);
@@ -85,6 +86,7 @@ class Body extends Component {
         {/* Провайдер для передачи стора в компоненты */}
         <Provider store={store}>
           <div>
+            <LeftMenu />
             {console.log("Хранилище", store)}
             <VideosContaiter />
             <VideoDetails />
