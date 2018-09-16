@@ -5,3 +5,10 @@ export const selectVideo = video => {
     payLoad: video
   };
 };
+
+export const toggleMenu = (menuState) => {
+  return {
+    type: 'TOGGLE_MENU',
+    menuActive: menuState
+  }
+}

@@ -9,6 +9,7 @@ import VideoPage from "./VideoPage.jsx";
 import VideosContaiter from "../containers/videosContaner.jsx";
 import VideoDetails from "../containers/videoDetails.jsx";
 import LeftMenu from "./LeftMenu";
+import Header from "../containers/Header";
 
 import "./Body.scss";
 
@@ -47,6 +48,50 @@ class Body extends Component {
       (this.finalURL = `https://www.googleapis.com/youtube/v3/search?`);
   }
 
+  render() {
+    return (
+      <Router>
+        {/* Провайдер для передачи стора в компоненты */}
+        <Provider store={store}>
+          <div>
+            <Header />
+            <LeftMenu />
+            <div className="body__content">
+              <VideosContaiter />
+              <VideoDetails />
+              <SearchForm
+                changeVideoArray={this.showVideoPreview}
+                finalUrlToParent={this.saveFinalUrl}
+              />
+
+              <Switch>
+                <Route
+                  path="/video/:id"
+                  render={props => (
+                    <VideoPage {...props} extra={this.state.videoArray} />
+                  )}
+                />
+                <Route
+                  path="/"
+                  render={props => (
+                    <ListOfVideos {...props} extra={this.state.videoArray} />
+                  )}
+                />
+              </Switch>
+
+              <div className="body__nextPageBtn">
+                <NextPageBtn
+                  nextPageClick={this.nextPageClick}
+                  nextPageToken={this.state.nextPageToken}
+                />
+              </div>
+            </div>
+          </div>
+        </Provider>
+      </Router>
+    );
+  }
+
   showVideoPreview = data => {
     const videoArray = data.items;
     const nextPageToken = data.nextPageToken;
@@ -79,48 +124,6 @@ class Body extends Component {
     this.finalURL = finalURL;
     console.log("Итоговый урл", finalURL);
   };
-
-  render() {
-    return (
-      <Router>
-        {/* Провайдер для передачи стора в компоненты */}
-        <Provider store={store}>
-          <div>
-            <LeftMenu />
-            {console.log("Хранилище", store)}
-            <VideosContaiter />
-            <VideoDetails />
-            <SearchForm
-              changeVideoArray={this.showVideoPreview}
-              finalUrlToParent={this.saveFinalUrl}
-            />
-
-            <Switch>
-              <Route
-                path="/video/:id"
-                render={props => (
-                  <VideoPage {...props} extra={this.state.videoArray} />
-                )}
-              />
-              <Route
-                path="/"
-                render={props => (
-                  <ListOfVideos {...props} extra={this.state.videoArray} />
-                )}
-              />
-            </Switch>
-
-            <div className="body__nextPageBtn">
-              <NextPageBtn
-                nextPageClick={this.nextPageClick}
-                nextPageToken={this.state.nextPageToken}
-              />
-            </div>
-          </div>
-        </Provider>
-      </Router>
-    );
-  }
 }
 
 ReactDOM.render(<Body />, document.getElementById("root"));
