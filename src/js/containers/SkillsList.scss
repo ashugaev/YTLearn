@@ -1,0 +1,21 @@
+.skillsList {
+    &__item {
+        list-style-type: none;
+        font-size: 16px;
+        display: flex;
+        cursor: pointer;
+        user-select: none;
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    &__icon {
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin-right: 5px;
+    }
+}
