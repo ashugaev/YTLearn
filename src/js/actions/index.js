@@ -6,8 +6,6 @@ export const selectVideo = video => {
   };
 };
 
-export const toggleMenu = () => {
-  return {
-    type: "TOGGLE_MENU"
-  };
+export const toggleMenu = () => dispatch => {
+  dispatch({ type: "TOGGLE_MENU" });
 };
