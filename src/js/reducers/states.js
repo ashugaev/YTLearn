@@ -1,10 +1,14 @@
-export default function(state = false, action) {
+export default function(state = myState, action) {
   switch (action.type) {
     case "TOGGLE_MENU":
-      return Object.assign({}, state, {
-        menuActive: true
-      });
+      return {
+        menuActive: !state.menuActive
+      };
     default:
       return state;
   }
 }
+
+const myState = {
+  menuActive: false
+};

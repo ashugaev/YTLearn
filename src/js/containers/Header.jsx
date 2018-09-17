@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <div className="yHeader">
         <div
-          onClick={() => this.props.toggleMenu(true)}
+          onClick={() => this.props.onMenuClick()}
           className="yHeader__menuBtn"
         />
       </div>
@@ -19,21 +19,21 @@ class Header extends Component {
   }
 }
 
-// const matchDispatchToProps = dispatch => {
-//   return {
-//     onMenuClick: menuState => {
-//       dispatch(toggleMenu(menuState));
-//     }
-//   };
-// };
+const matchDispatchToProps = dispatch => {
+  return {
+    onMenuClick: () => {
+      dispatch(toggleMenu());
+    }
+  };
+};
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      toggleMenu: toggleMenu
-    },
-    dispatch
-  );
-}
+// function matchDispatchToProps(dispatch) {
+//   return bindActionCreators(
+//     {
+//       toggleMenu
+//     },
+//     dispatch
+//   );
+// }
 
 export default connect(matchDispatchToProps)(Header);
