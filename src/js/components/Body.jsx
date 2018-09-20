@@ -6,18 +6,22 @@ import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
-import VideosContaiter from "../containers/videosContaner.jsx";
-import VideoDetails from "../containers/videoDetails.jsx";
-import LeftMenu from "./LeftMenu";
+// import VideosContaiter from "../containers/videosContaner.jsx";
+// import VideoDetails from "../containers/videoDetails.jsx";
 import Header from "../containers/Header";
+import Test from "./Test";
+
+import configureStore from "../store/index";
 
 import "./Body.scss";
 
-import { createStore } from "redux";
-import allRedusers from "../reducers";
+// import { createStore } from "redux";
+// import allRedusers from "../reducers";
 import { Provider } from "react-redux";
 
-const store = createStore(allRedusers);
+// console.log("супермегатест redux", configureStore);
+
+const store = configureStore();
 
 class ListOfVideos extends Component {
   constructor(props) {
@@ -49,16 +53,25 @@ class Body extends Component {
   }
 
   render() {
+    const state = store.getState();
     return (
       <Router>
         {/* Провайдер для передачи стора в компоненты */}
         <Provider store={store}>
           <div>
+            <Test />
+            {console.log(
+              "супермегатест redux",
+              state.menuState.menuActive,
+              this.props,
+              this.store,
+              state
+            )}
+
             <Header />
-            <LeftMenu />
             <div className="body__content">
-              <VideosContaiter />
-              <VideoDetails />
+              {/* <VideosContaiter /> */}
+              {/* <VideoDetails /> */}
               <SearchForm
                 changeVideoArray={this.showVideoPreview}
                 finalUrlToParent={this.saveFinalUrl}

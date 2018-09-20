@@ -1,4 +1,5 @@
-export default function(state = myState, action) {
+// Меняет стейт меню
+export default (state = { menuActive: false }, action) => {
   switch (action.type) {
     case "TOGGLE_MENU":
       return {
@@ -7,8 +8,4 @@ export default function(state = myState, action) {
     default:
       return state;
   }
-}
-
-const myState = {
-  menuActive: false
 };

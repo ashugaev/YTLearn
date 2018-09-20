@@ -13,6 +13,8 @@ class LeftMenu extends Component {
         <ul className="leftMenu__list">
           <SkillsList />
         </ul>
+
+        <addTextBtn text="Добавить навык" />
       </div>
     );
   }
