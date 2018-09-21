@@ -1,31 +1,30 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./VideoInTheList.scss";
-class VideoInTheList extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <Link to={`/video/${this.props.dataKey}`}>
-        <div className="videoInTheList">
-          <img src={this.props.item.snippet.thumbnails.medium.url} alt="" />
-          <div className="videoInTheList__info-box">
-            <div className="videoInTheList__title">
-              {this.props.item.snippet.title}
-            </div>
-            <div className="videoInTheList__description">
-              {this.props.item.snippet.description}
-            </div>
-          </div>
+
+const VideoInTheList = ({ dataKey, item }) => (
+  <Link to={`/video/${dataKey}`}>
+    <div className="videoInTheList">
+      <img src={item.snippet.thumbnails.medium.url} alt="" />
+      <div className="videoInTheList__info-box">
+        <div className="videoInTheList__title">{item.snippet.title}</div>
+        <div className="videoInTheList__description">
+          {item.snippet.description}
         </div>
-      </Link>
-    );
-  }
+      </div>
+    </div>
+  </Link>
+);
 
+VideoInTheList.propTypes = {
+  dataKey: PropTypes.number,
+  item: PropTypes.object
+};
 
-}
+// item.snippet.thumbnails.medium.url,
+// item.snippet.title,
 
 export default VideoInTheList;
 
