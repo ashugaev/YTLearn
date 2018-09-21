@@ -1,0 +1,11 @@
+.addBtnText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+        cursor: pointer;
+    }
+    &__iconPlus {
+        margin-right: 5px;
+    }
+}

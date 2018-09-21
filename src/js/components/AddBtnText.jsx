@@ -2,10 +2,10 @@ import React from "react";
 
 import "./AddBtnText.scss";
 
-const AddBtnText = () => (
-  <div>
-    <i className="icon icon_plus" />
-    Добавить навык
+const AddBtnText = props => (
+  <div className="addBtnText">
+    <i className={`icon icon_${props.icon} addBtnText__iconPlus`} />
+     {props.text}
   </div>
 );
 export default AddBtnText;
