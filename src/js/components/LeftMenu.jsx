@@ -4,6 +4,8 @@ import SkillsList from "../containers/SkillsList.jsx";
 
 import "./LeftMenu.scss";
 
+import AddBtnText from "./addBtnText";
+
 class LeftMenu extends Component {
   render() {
     return (
@@ -14,7 +16,7 @@ class LeftMenu extends Component {
           <SkillsList />
         </ul>
 
-        <addTextBtn text="Добавить навык" />
+        <AddBtnText text="Добавить навык" />
       </div>
     );
   }

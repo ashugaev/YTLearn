@@ -15,6 +15,8 @@ import configureStore from "../store/index";
 
 import "./Body.scss";
 
+import "../../scss/elements/_icons.scss";
+
 // import { createStore } from "redux";
 // import allRedusers from "../reducers";
 import { Provider } from "react-redux";
