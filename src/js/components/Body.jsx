@@ -6,6 +6,7 @@ import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
+import PopupAddSkill from "./PopupAddSkill"
 // import VideosContaiter from "../containers/videosContaner.jsx";
 // import VideoDetails from "../containers/videoDetails.jsx";
 import Header from "../containers/Header";
@@ -101,6 +102,7 @@ class Body extends Component {
                 />
               </div>
             </div>
+            <PopupAddSkill />
           </div>
         </Provider>
       </Router>
