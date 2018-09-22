@@ -28,7 +28,8 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  menuActive: state.menuState
+  menuActive: state.menuState,
+  skills: state.skills
 });
 
 export default connect(

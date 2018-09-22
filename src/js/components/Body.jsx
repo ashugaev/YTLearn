@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import * as firebase from "firebase";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import SearchForm from "./SearchForm.jsx";
 import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
-import PopupAddSkill from "./PopupAddSkill"
+import PopupAddSkill from "./PopupAddSkill";
 // import VideosContaiter from "../containers/videosContaner.jsx";
 // import VideoDetails from "../containers/videoDetails.jsx";
 import Header from "../containers/Header";
@@ -25,6 +26,19 @@ import { Provider } from "react-redux";
 // console.log("супермегатест redux", configureStore);
 
 const store = configureStore();
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyAXRYlzrWR3c829e_CxDkT_t5ksr1N9TEo",
+  authDomain: "ytlearn-215919.firebaseapp.com",
+  databaseURL: "https://ytlearn-215919.firebaseio.com",
+  projectId: "ytlearn-215919",
+  storageBucket: "ytlearn-215919.appspot.com",
+  messagingSenderId: "817859127970"
+};
+firebase.initializeApp(config);
+
+export const storage = firebase.storage();
 
 class ListOfVideos extends Component {
   constructor(props) {
