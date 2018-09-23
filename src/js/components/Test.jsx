@@ -8,16 +8,16 @@ class Test extends Component {
   render() {
     return (
       <div>
-        {console.log("texst comp", this.props.menuActive)}
-        {this.props.menuActive && <LeftMenu />}
+        {console.log("texst comp", this.props)}
+        {this.props.menuActive.menuActive && <LeftMenu />}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // menuActive: state.menuState
-  menuActive: true
+  menuActive: state.menuState
+  // menuActive: state.menuActive
 });
 
 export default connect(mapStateToProps)(Test);

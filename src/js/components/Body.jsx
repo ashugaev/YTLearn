@@ -110,7 +110,7 @@ class Body extends Component {
               />
             </div>
           </div>
-          {this.props.popUpAddSkill.popUpActive && <PopupAddSkill />}
+          {this.props.popUpActive.menuActive && <PopupAddSkill />}
         </div>
       </Router>
     );
@@ -161,7 +161,4 @@ const mapStateToProps = state => ({
   popUpActive: state.popUpAddSkill
 });
 
-export default connect(
-  null,
-  mapStateToProps
-)(Body);
+export default connect(mapStateToProps)(Body);
