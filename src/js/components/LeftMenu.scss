@@ -1,6 +1,6 @@
 @import "../../scss/helpers/variables";
 .leftMenu {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: $c-grayLightOne;
@@ -11,8 +11,6 @@
   padding: 60px 20px 20px 20px;
   z-index: $z-leftMenu;
   justify-content: space-between;
-  &__topBox {
-  }
   &__list {
     margin: 0;
     padding: 0;

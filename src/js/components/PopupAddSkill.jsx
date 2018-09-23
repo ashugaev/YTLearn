@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { skillAdd } from "../actions";
+import { bindActionCreators } from "redux";
+import { skillAdd, togglePopupAddSkill } from "../actions";
 
 import * as firebase from "firebase";
 import { storage } from "./Body";
@@ -18,7 +19,7 @@ class PopupAddSkill extends Component {
 
   render() {
     return (
-      <div className="popupAddSkill__bg">
+      <div className="popupAddSkill__bg" onClick={this.onClose}>
         <div className="popupAddSkill__content">
           <form onSubmit={this.onAddSkill}>
             <div className="popupAddSkill__inpTitle">Название для навыка</div>
@@ -122,9 +123,24 @@ class PopupAddSkill extends Component {
   handleUploadStart = data => {
     console.log("success", data);
   };
+
+  onClose = e => {
+    (e.target.classList.contains("popupAddSkill__bg")) &&
+      this.props.togglePopupAddSkill();
+  };
+}
+
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      skillAdd,
+      togglePopupAddSkill
+    },
+    dispatch
+  );
 }
 
 export default connect(
   null,
-  { skillAdd }
+  matchDispatchToProps
 )(PopupAddSkill);

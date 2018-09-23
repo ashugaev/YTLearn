@@ -8,6 +8,7 @@ import VideoInTheList from "./VideoInTheList.jsx";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
 import PopupAddSkill from "./PopupAddSkill";
+import SkillsPage from "./SkillsPage";
 // import VideosContaiter from "../containers/videosContaner.jsx";
 // import VideoDetails from "../containers/videoDetails.jsx";
 import Header from "../containers/Header";
@@ -68,47 +69,18 @@ class Body extends Component {
   }
 
   render() {
-    // const state = store.getState();
     return (
       <Router>
-        {/* Провайдер для передачи стора в компоненты */}
         <div>
           <Test />
-          {console.log(
-            "супермегатест redux",
-            this.props,
-          )}
+          {console.log("супермегатест redux", this.props)}
 
           <Header />
           <div className="body__content">
-            {/* <VideosContaiter /> */}
-            {/* <VideoDetails /> */}
-            <SearchForm
-              changeVideoArray={this.showVideoPreview}
-              finalUrlToParent={this.saveFinalUrl}
-            />
-
             <Switch>
-              <Route
-                path="/video/:id"
-                render={props => (
-                  <VideoPage {...props} extra={this.state.videoArray} />
-                )}
-              />
-              <Route
-                path="/"
-                render={props => (
-                  <ListOfVideos {...props} extra={this.state.videoArray} />
-                )}
-              />
+              <Route path="/" component={SkillsPage} />
+              )} />
             </Switch>
-
-            <div className="body__nextPageBtn">
-              <NextPageBtn
-                nextPageClick={this.nextPageClick}
-                nextPageToken={this.state.nextPageToken}
-              />
-            </div>
           </div>
           {this.props.popUpActive.menuActive && <PopupAddSkill />}
         </div>
@@ -120,13 +92,11 @@ class Body extends Component {
     const videoArray = data.items;
     const nextPageToken = data.nextPageToken;
 
-    console.log("Привет", videoArray);
     this.setState({ videoArray, nextPageToken });
   };
 
   // Клик. Следующая страница
   nextPageClick = data => {
-    console.log(data, this.finalURL);
     const url = this.finalURL + data;
 
     fetch(url)
@@ -144,17 +114,9 @@ class Body extends Component {
 
   // Запишет урл
   saveFinalUrl = finalURL => {
-    // this.setState({ finalURL });
     this.finalURL = finalURL;
-    console.log("Итоговый урл", finalURL);
   };
 }
-
-// const mapDispatchToProps = dispatch => ({
-//   togglePopupAddSkill: () => {
-//     dispatch(togglePopupAddSkill());
-//   }
-// });
 
 const mapStateToProps = state => ({
   menuActive: state.menuState,
@@ -162,3 +124,40 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Body);
+
+{
+  /* <VideosContaiter /> */
+}
+{
+  /* <VideoDetails /> */
+}
+{
+  /* <SearchForm
+              changeVideoArray={this.showVideoPreview}
+              finalUrlToParent={this.saveFinalUrl}
+            /> */
+}
+{
+  /* <Route
+                path="/video/:id"
+                render={props => (
+                  <VideoPage {...props} extra={this.state.videoArray} />
+                )}
+              /> */
+}
+{
+  /* <Route
+                path="/"
+                render={props => (
+                  <ListOfVideos {...props} extra={this.state.videoArray} />
+                )}
+              /> */
+}
+{
+  /* <div className="body__nextPageBtn">
+              <NextPageBtn
+                nextPageClick={this.nextPageClick}
+                nextPageToken={this.state.nextPageToken}
+              />
+            </div> */
+}

@@ -11,3 +11,4 @@ export const skillAdd = newSkill => ({
 export const togglePopupAddSkill = () => ({
   type: "TOGGLE_ADD_SKILL"
 });
+

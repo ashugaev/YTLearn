@@ -1,5 +1,5 @@
 // Меняет стейт меню
-export default (state = { menuActive: true }, action) => {
+export default (state = { menuActive: false }, action) => {
   switch (action.type) {
     case "TOGGLE_MENU":
       console.log("menu state", state.menuActive);
