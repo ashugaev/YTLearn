@@ -16,6 +16,7 @@ import Test from "./Test";
 import configureStore from "../store/index";
 
 import "./Body.scss";
+import "../../scss/main.scss";
 
 import "../../scss/elements/_icons.scss";
 
@@ -116,7 +117,7 @@ class Body extends Component {
                 />
               </div>
             </div>
-            <PopupAddSkill />
+            {state.popUpAddSkill.popUpActive && <PopupAddSkill />}
           </div>
         </Provider>
       </Router>

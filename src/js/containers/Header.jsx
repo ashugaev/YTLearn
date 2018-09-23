@@ -16,12 +16,6 @@ class Header extends React.Component {
           className="yHeader__menuBtn"
           onClick={() => this.props.toggleMenu()}
         />
-        {console.log(this.props, this.props.menuActive.menuActive)}
-        {/* {this.props.toggleMenu()} */}
-        {console.log(this.props.menuActive.menuActive)}
-        {/* {this.props.menuActive.menuActive && (
-          <button className="yHeder__test" />
-        )} */}
       </div>
     );
   }
@@ -36,5 +30,3 @@ export default connect(
   mapStateToProps,
   { toggleMenu }
 )(Header);
-
-// export default Header;

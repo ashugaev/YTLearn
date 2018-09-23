@@ -25,7 +25,7 @@
     }
     &__inpTitle {
         font: 500 16px 'Roboto', sans-serif;
-        margin: 10px 0;
+        margin: 15px 0 10px;
         &:first-child {
             margin-top: 0;
         }
@@ -34,5 +34,16 @@
     &__inpDesctiption,
     &__btnSubmit {
         width: 100%;
+    }
+
+    &__inpDesctiption {
+        max-height: 500px;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    &__btnSubmit {
+        margin-top: 15px;
+        height: 40px;
     }
 }

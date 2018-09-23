@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import SkillsList from "../containers/SkillsList.jsx";
 
+import { togglePopupAddSkill } from "../actions";
+import store from '../store'
 
 import "./LeftMenu.scss";
 
@@ -17,12 +20,20 @@ class LeftMenu extends Component {
           <ul className="leftMenu__list">
             <SkillsList />
           </ul>
-        </div>    
-
-        <AddBtnText text="Добавить навык" icon="plus"/>
+        </div>
+        {console.log("props", this.props)}
+        {console.log("store", store)}
+        <AddBtnText
+          text="Добавить навык"
+          icon="plus"
+          onClick={() => store.dispatch(this.props.togglePopupAddSkill())}
+        />
       </div>
     );
   }
 }
 
-export default LeftMenu;
+export default connect(
+  null,
+  { togglePopupAddSkill }
+)(LeftMenu);

@@ -1,0 +1,14 @@
+@import "./button-base";
+@import "../helpers/variables";
+
+.btn_red {
+  background: $c-redMain;
+  border: solid 1px;
+  @include hover-t_white;
+}
+
+.btn_gray {
+  background: #c1c1c1;
+  border: solid 1px;
+  @include hover-t_white;
+}

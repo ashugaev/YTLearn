@@ -1,0 +1,17 @@
+@import "../helpers/variables";
+
+.input,
+.textarea {
+  border: solid 1px #dedede;
+  border-radius: $r-one;
+  font: 16px "Roboto", sans-serif;
+  padding: 0 7px;
+}
+
+.input {
+  height: 35px;
+}
+
+.textarea {
+  height: 50px;
+}
