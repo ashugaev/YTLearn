@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import SkillsList from "../containers/SkillsList.jsx";
 
 import { togglePopupAddSkill } from "../actions";
-import store from '../store'
+import store from "../store";
 
 import "./LeftMenu.scss";
 
@@ -21,19 +21,23 @@ class LeftMenu extends Component {
             <SkillsList />
           </ul>
         </div>
-        {console.log("props", this.props)}
-        {console.log("store", store)}
         <AddBtnText
           text="Добавить навык"
           icon="plus"
-          onClick={() => store.dispatch(this.props.togglePopupAddSkill())}
+          onClick={() => this.props.togglePopupAddSkill()}
         />
       </div>
     );
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  togglePopupAddSkill: () => {
+    dispatch(togglePopupAddSkill());
+  }
+});
+
 export default connect(
   null,
-  { togglePopupAddSkill }
+  mapDispatchToProps
 )(LeftMenu);

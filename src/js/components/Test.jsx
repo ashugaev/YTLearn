@@ -6,7 +6,12 @@ import { connect } from "react-redux";
 
 class Test extends Component {
   render() {
-    return <div>{this.props.menuActive.menuActive && <LeftMenu />}</div>;
+    return (
+      <div>
+        {console.log("texst comp", this.props)}
+        {this.props.menuActive && <LeftMenu />}
+      </div>
+    );
   }
 }
 

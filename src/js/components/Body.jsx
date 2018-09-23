@@ -13,6 +13,8 @@ import PopupAddSkill from "./PopupAddSkill";
 import Header from "../containers/Header";
 import Test from "./Test";
 
+import { connect } from "react-redux";
+
 import configureStore from "../store/index";
 
 import "./Body.scss";
@@ -75,51 +77,49 @@ class Body extends Component {
     return (
       <Router>
         {/* Провайдер для передачи стора в компоненты */}
-        <Provider store={store}>
-          <div>
-            <Test />
-            {console.log(
-              "супермегатест redux",
-              state.menuState.menuActive,
-              this.props,
-              this.store,
-              state
-            )}
+        <div>
+          <Test />
+          {console.log(
+            "супермегатест redux",
+            state.menuState.menuActive,
+            this.props,
+            this.store,
+            state
+          )}
 
-            <Header />
-            <div className="body__content">
-              {/* <VideosContaiter /> */}
-              {/* <VideoDetails /> */}
-              <SearchForm
-                changeVideoArray={this.showVideoPreview}
-                finalUrlToParent={this.saveFinalUrl}
+          <Header />
+          <div className="body__content">
+            {/* <VideosContaiter /> */}
+            {/* <VideoDetails /> */}
+            <SearchForm
+              changeVideoArray={this.showVideoPreview}
+              finalUrlToParent={this.saveFinalUrl}
+            />
+
+            <Switch>
+              <Route
+                path="/video/:id"
+                render={props => (
+                  <VideoPage {...props} extra={this.state.videoArray} />
+                )}
               />
+              <Route
+                path="/"
+                render={props => (
+                  <ListOfVideos {...props} extra={this.state.videoArray} />
+                )}
+              />
+            </Switch>
 
-              <Switch>
-                <Route
-                  path="/video/:id"
-                  render={props => (
-                    <VideoPage {...props} extra={this.state.videoArray} />
-                  )}
-                />
-                <Route
-                  path="/"
-                  render={props => (
-                    <ListOfVideos {...props} extra={this.state.videoArray} />
-                  )}
-                />
-              </Switch>
-
-              <div className="body__nextPageBtn">
-                <NextPageBtn
-                  nextPageClick={this.nextPageClick}
-                  nextPageToken={this.state.nextPageToken}
-                />
-              </div>
+            <div className="body__nextPageBtn">
+              <NextPageBtn
+                nextPageClick={this.nextPageClick}
+                nextPageToken={this.state.nextPageToken}
+              />
             </div>
-            {state.popUpAddSkill.popUpActive && <PopupAddSkill />}
           </div>
-        </Provider>
+          {state.popUpAddSkill.popUpActive && <PopupAddSkill />}
+        </div>
       </Router>
     );
   }
@@ -158,4 +158,17 @@ class Body extends Component {
   };
 }
 
-ReactDOM.render(<Body />, document.getElementById("root"));
+// const mapDispatchToProps = dispatch => ({
+//   togglePopupAddSkill: () => {
+//     dispatch(togglePopupAddSkill());
+//   }
+// });
+
+const mapStateToProps = state => ({
+  menuActive: state.menuState,
+});
+
+export default connect(
+  null,
+  mapStateToProps
+)(Body);

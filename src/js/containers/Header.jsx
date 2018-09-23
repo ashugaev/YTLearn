@@ -3,8 +3,6 @@ import React from "react";
 import { connect } from "react-redux";
 // Экшены. связяны со стейтами через конект
 import { toggleMenu } from "../actions/index";
-// Группа reducers
-import reducers from "../store";
 
 import "./Header.scss";
 
