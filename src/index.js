@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 import Body from "./js/components/Body";
-import reducer from "./js/store";
+import reducers from "./js/store";
 
-const store = createStore(reducer);
+const store = createStore(reducers);
 
 ReactDOM.render(
   <Provider store={store}>

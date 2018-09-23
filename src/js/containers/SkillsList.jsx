@@ -7,6 +7,7 @@ class SkillsList extends Component {
   render() {
     return (
       <div>
+        {console.log("skillslist", this.props)}
         {this.props.skills.map((skill, index) => {
           return (
             <li key={skill.name} className="skillsList__item">

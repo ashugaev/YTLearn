@@ -1,7 +1,7 @@
 import React from "react";
-// Коннектор
 import { connect } from "react-redux";
-// Экшены. связяны со стейтами через конект
+import { bindActionCreators } from "redux";
+
 import { toggleMenu } from "../actions/index";
 
 import "./Header.scss";
@@ -10,6 +10,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="yHeader">
+        { console.log('header', this.props) }
         <div
           className="yHeader__menuBtn"
           onClick={() => this.props.toggleMenu()}
@@ -24,7 +25,16 @@ const mapStateToProps = state => ({
   skills: state.skills
 });
 
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      toggleMenu
+    },
+    dispatch
+  );
+}
+
 export default connect(
   mapStateToProps,
-  { toggleMenu }
+  matchDispatchToProps
 )(Header);

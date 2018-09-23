@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import * as firebase from "firebase";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -15,7 +15,7 @@ import Test from "./Test";
 
 import { connect } from "react-redux";
 
-import configureStore from "../store/index";
+// import configureStore from "../store/index";
 
 import "./Body.scss";
 import "../../scss/main.scss";
@@ -24,11 +24,10 @@ import "../../scss/elements/_icons.scss";
 
 // import { createStore } from "redux";
 // import allRedusers from "../reducers";
-import { Provider } from "react-redux";
 
 // console.log("супермегатест redux", configureStore);
 
-const store = configureStore();
+// const store = configureStore();
 
 // Initialize Firebase
 var config = {
@@ -44,10 +43,6 @@ firebase.initializeApp(config);
 export const storage = firebase.storage();
 
 class ListOfVideos extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
@@ -73,7 +68,7 @@ class Body extends Component {
   }
 
   render() {
-    const state = store.getState();
+    // const state = store.getState();
     return (
       <Router>
         {/* Провайдер для передачи стора в компоненты */}
@@ -81,10 +76,7 @@ class Body extends Component {
           <Test />
           {console.log(
             "супермегатест redux",
-            state.menuState.menuActive,
             this.props,
-            this.store,
-            state
           )}
 
           <Header />
@@ -118,7 +110,7 @@ class Body extends Component {
               />
             </div>
           </div>
-          {state.popUpAddSkill.popUpActive && <PopupAddSkill />}
+          {this.props.popUpAddSkill.popUpActive && <PopupAddSkill />}
         </div>
       </Router>
     );
@@ -166,6 +158,7 @@ class Body extends Component {
 
 const mapStateToProps = state => ({
   menuActive: state.menuState,
+  popUpActive: state.popUpAddSkill
 });
 
 export default connect(

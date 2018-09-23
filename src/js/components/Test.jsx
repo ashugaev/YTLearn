@@ -8,7 +8,7 @@ class Test extends Component {
   render() {
     return (
       <div>
-        {console.log("texst comp", this.props)}
+        {console.log("texst comp", this.props.menuActive)}
         {this.props.menuActive && <LeftMenu />}
       </div>
     );
@@ -16,7 +16,8 @@ class Test extends Component {
 }
 
 const mapStateToProps = state => ({
-  menuActive: state.menuState
+  // menuActive: state.menuState
+  menuActive: true
 });
 
 export default connect(mapStateToProps)(Test);

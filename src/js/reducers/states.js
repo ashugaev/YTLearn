@@ -2,6 +2,7 @@
 export default (state = { menuActive: true }, action) => {
   switch (action.type) {
     case "TOGGLE_MENU":
+      console.log("menu state", state.menuActive);
       return {
         menuActive: !state.menuActive
       };
