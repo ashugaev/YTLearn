@@ -16,6 +16,7 @@ import Test from "./Test";
 
 import { connect } from "react-redux";
 
+import firebaseInit, { getSkills } from "../../firebase";
 // import configureStore from "../store/index";
 
 import "./Body.scss";
@@ -116,6 +117,11 @@ class Body extends Component {
   saveFinalUrl = finalURL => {
     this.finalURL = finalURL;
   };
+
+  componentDidMount() {
+    firebaseInit();
+    getSkills();
+  }
 }
 
 const mapStateToProps = state => ({
