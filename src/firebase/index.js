@@ -1,35 +1,43 @@
 import * as firebase from "firebase";
 
 export const getSkills = () => {
-  firebase
-    .database()
-    .ref()
-    .once("value")
-    .then(data => {
-      console.log("firebaseData", data.val());
-    })
+  return new Promise(resolve => {
 
-    .catch(error => {
-      console.log(error);
-    });
+    firebase
+      .database()
+      .ref()
+      .once("value")
+      .then(data => {
+        resolve(data.val());
+      })
+
+      .catch(error => {
+        console.log(error);
+      });
+  })
 };
 
 const firebaseInit = () => {
-  // Initialize Cloud Firestore through Firebase
-  var db = firebase.firestore();
+  return new Promise(resolve => {
+    let result = []
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
 
-  // Disable deprecated features
-  db.settings({
-    timestampsInSnapshots: true
-  });
-
-  //firestore
-  db.collection("skills")
-    .get()
-    .then(querySnapshot => {
-      console.log(querySnapshot)
-      querySnapshot.docs[0].exists && console.log("fireStore", querySnapshot.docs[0].data());
+    // Disable deprecated features
+    db.settings({
+      timestampsInSnapshots: true
     });
+
+    //firestore
+    db.collection("skills")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          result.push(doc.data())
+        });
+        resolve(result);
+      });
+  })
 };
 
 export default firebaseInit;

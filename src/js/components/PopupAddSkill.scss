@@ -25,7 +25,7 @@
     }
     &__inpTitle {
         font: 500 16px 'Roboto', sans-serif;
-        margin: 15px 0 10px;
+        margin: 20px 0 10px;
         &:first-child {
             margin-top: 0;
         }
@@ -45,5 +45,15 @@
     &__btnSubmit {
         margin-top: 15px;
         height: 40px;
+    }
+    &__error {
+        font: 12px 'Roboto', sans-serif;
+        color: red;
+        margin: 3px;
+        position: relative;
+        & span {
+            position: absolute;
+
+        }
     }
 }

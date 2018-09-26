@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import LeftMenu from "./LeftMenu";
+import LeftMenu from "./leftSlideMenu/LeftMenu";
 // connect подписывает компонент на store
 import { connect } from "react-redux";
 

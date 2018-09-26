@@ -2,16 +2,19 @@ import React, { Component } from "react";
 // import ReactDOM from "react-dom";
 import * as firebase from "firebase";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { bindActionCreators } from "redux";
 
 import SearchForm from "./SearchForm.jsx";
-import VideoInTheList from "./VideoInTheList.jsx";
+// import VideoInTheList from "./oneSkillPage/VideoInTheList";
 import NextPageBtn from "./NextPageBtn.jsx";
 import VideoPage from "./VideoPage.jsx";
 import PopupAddSkill from "./PopupAddSkill";
 import SkillsPage from "./SkillsPage";
+
+import { skillAdd } from '../actions';
 // import VideosContaiter from "../containers/videosContaner.jsx";
 // import VideoDetails from "../containers/videoDetails.jsx";
-import Header from "../containers/Header";
+import Header from "./header/Header";
 import Test from "./Test";
 
 import { connect } from "react-redux";
@@ -23,6 +26,7 @@ import "./Body.scss";
 import "../../scss/main.scss";
 
 import "../../scss/elements/_icons.scss";
+import OndeSkillPage from "./oneSkillPage/OndeSkillPage";
 
 // import { createStore } from "redux";
 // import allRedusers from "../reducers";
@@ -44,17 +48,17 @@ firebase.initializeApp(config);
 
 export const storage = firebase.storage();
 
-class ListOfVideos extends Component {
-  render() {
-    return (
-      <div>
-        {this.props.extra.map((item, i) => {
-          return <VideoInTheList key={i} dataKey={i} item={item} />;
-        })}
-      </div>
-    );
-  }
-}
+// class ListOfVideos extends Component {
+//   render() {
+//     return (
+//       <div>
+//         {this.props.extra.map((item, i) => {
+//           return <VideoInTheList key={i} dataKey={i} item={item} />;
+//         })}
+//       </div>
+//     );
+//   }
+// }
 
 class Body extends Component {
   constructor() {
@@ -79,6 +83,7 @@ class Body extends Component {
           <Header />
           <div className="body__content">
             <Switch>
+              <Route path="/skills/:skillLink" component={OndeSkillPage} />
               <Route path="/" component={SkillsPage} />
               )} />
             </Switch>
@@ -118,9 +123,12 @@ class Body extends Component {
     this.finalURL = finalURL;
   };
 
-  componentDidMount() {
-    firebaseInit();
-    getSkills();
+  async componentDidMount() {
+    const skillsF = await getSkills();
+    console.log('асинхрофазатрон', skillsF);
+    const kkk = await firebaseInit();
+    console.log('asyncBro2', kkk)
+    this.props.skillAdd(kkk);
   }
 }
 
@@ -129,7 +137,17 @@ const mapStateToProps = state => ({
   popUpActive: state.popUpAddSkill
 });
 
-export default connect(mapStateToProps)(Body);
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      skillAdd
+    },
+    dispatch
+  );
+}
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(Body);
 
 {
   /* <VideosContaiter /> */

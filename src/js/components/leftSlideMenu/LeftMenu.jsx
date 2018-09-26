@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import SkillsList from "../containers/SkillsList.jsx";
+import SkillsList from "../SkillsList";
 
-import { togglePopupAddSkill } from "../actions";
-import store from "../store";
+import { togglePopupAddSkill } from "../../actions";
+import store from "../../store";
 
 import "./LeftMenu.scss";
 

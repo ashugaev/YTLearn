@@ -13,7 +13,13 @@ class PopupAddSkill extends Component {
     super();
     this.state = {
       imageName: null,
-      iconLoadingProgress: "0%"
+      iconLoadingProgress: "0%",
+      errors: {
+        titleLength: false,
+        descriptionLength: false,
+        imageSize: false,
+        imageFormat: false
+      }
     };
   }
 
@@ -24,6 +30,7 @@ class PopupAddSkill extends Component {
           <form onSubmit={this.onAddSkill}>
             <div className="popupAddSkill__inpTitle">Название для навыка</div>
             <input className="input popupAddSkill__inpName" name="title" />
+            <div className="popupAddSkill__error"><span>Привет</span></div>
             <div className="popupAddSkill__inpTitle">Иконка навыка</div>
             <input
               type="file"
@@ -72,6 +79,10 @@ class PopupAddSkill extends Component {
     e.preventDefault();
     const elements = e.target.elements;
     const image = elements.icon.files[0];
+    const title = elements.title.value
+    const description = elements.description.value
+
+    if (!this.validate(image, title, description)) return
 
     // Загружаем изображение
     var uploadTask = firebase
@@ -116,6 +127,18 @@ class PopupAddSkill extends Component {
     })(elements);
   };
 
+  validate = (image, title, description) => {
+    if (title.length < 5 || description.length < 20) return (false)
+    if (image.size > 512000) { return }
+    console.log(image.type.indexOf('image'))
+    // const formats = ['jpeg', 'jpg', 'png', 'svg'];
+    // const mas = image.name.split('.');
+    // const mas2 = mas[mas.length - 1];
+    if (image.type.indexOf('image') < 0) return
+
+    return true
+  }
+
   handleUploadStart = () => {
     console.log("Загрузка началась");
   };
@@ -128,6 +151,8 @@ class PopupAddSkill extends Component {
     (e.target.classList.contains("popupAddSkill__bg")) &&
       this.props.togglePopupAddSkill();
   };
+
+
 }
 
 function matchDispatchToProps(dispatch) {
